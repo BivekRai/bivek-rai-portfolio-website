@@ -6,10 +6,11 @@ import { ProjectGallery } from '../../components/ProjectGallery';
 import { ProjectVisual } from '../../components/ProjectVisual';
 import { SiteHeader } from '../../components/SiteHeader';
 import { nextProject, projectBySlug, projects } from '../../data/projects';
+import { siteUrl } from '../../data/site';
 
 type Props = { params: Promise<{ slug: string }> };
 export function generateStaticParams() { return projects.map(({ slug }) => ({ slug })); }
-export async function generateMetadata({ params }: Props): Promise<Metadata> { const project = projectBySlug((await params).slug); if (!project) return {}; return { title: project.seo.title, description: project.seo.description, openGraph: { title: project.seo.title, description: project.seo.description, images: [] }, twitter: { title: project.seo.title, description: project.seo.description, images: [] } }; }
+export async function generateMetadata({ params }: Props): Promise<Metadata> { const project = projectBySlug((await params).slug); if (!project) return {}; const url = `${siteUrl}/work/${project.slug}`; return { title: project.seo.title, description: project.seo.description, alternates: { canonical: url }, openGraph: { title: project.seo.title, description: project.seo.description, url, images: [] }, twitter: { title: project.seo.title, description: project.seo.description, images: [] } }; }
 
 export default async function ProjectPage({ params }: Props) {
   const project = projectBySlug((await params).slug); if (!project) notFound(); const next = nextProject(project.slug);
