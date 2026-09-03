@@ -1,45 +1,95 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import type { Project, ProjectCategory } from '../data/projects';
 import { ProjectVisual } from './ProjectVisual';
 
-const filters: Array<'All' | ProjectCategory> = ['All', 'Reports', 'Presentations', 'Brand', 'Digital'];
+const categories: Array<{ label: string; value: ProjectCategory }> = [
+  { label: 'Reports', value: 'Reports' },
+  { label: 'Presentations', value: 'Presentations' },
+  { label: 'Branding', value: 'Brand' },
+  { label: 'Digital', value: 'Digital' },
+];
+
+const introductions: Record<ProjectCategory, { title: string; text: string }> = {
+  Reports: { title: 'Reports that make complex information clear.', text: 'I design annual reports, integrated reports, quarterly reports, sustainability and ESG reports, impact reports and other corporate publications, building strong narratives around detailed business information.' },
+  Presentations: { title: 'Presentations built to hold attention.', text: 'From corporate and investor presentations to pitch decks and leadership communication, I turn complex ideas into focused visual stories with clear structure, confident pacing and memorable information design.' },
+  Brand: { title: 'Brand communication with a consistent voice.', text: 'My branding work includes visual identities, brochures, campaigns and marketing collaterals designed to keep every message recognisable, useful and connected across formats.' },
+  Digital: { title: 'Digital experiences made easy to understand.', text: 'I apply the same clarity and hierarchy to UI/UX and web design, creating responsive digital experiences that feel modern, purposeful and simple to navigate.' },
+};
 
 export function WorkArchive({ projects }: { projects: Project[] }) {
-  const [filter, setFilter] = useState<(typeof filters)[number]>('All');
+  const [category, setCategory] = useState<ProjectCategory>('Reports');
+  const [brand, setBrand] = useState<string | null>(null);
   const [view, setView] = useState<'visual' | 'index'>('visual');
-  const visible = filter === 'All' ? projects : projects.filter((project) => project.category === filter);
+  const projectListRef = useRef<HTMLDivElement>(null);
+  const categoryProjects = projects.filter((project) => project.category === category);
+  const brands = Array.from(new Set(categoryProjects.map((project) => project.client)));
+  const visible = categoryProjects.filter((project) => !brand || project.client === brand);
+  const introduction = introductions[category];
+
+  const selectCategory = (nextCategory: ProjectCategory) => {
+    setCategory(nextCategory);
+    setBrand(null);
+  };
 
   return (
     <section className="archive">
-      <div className="archive-controls">
-        <div className="filter-group" aria-label="Filter work">
-          {filters.map((item) => <button type="button" className={filter === item ? 'is-active' : ''} onClick={() => setFilter(item)} key={item}>{item}</button>)}
+      <div className="archive-projects" id="project-list" ref={projectListRef}>
+        <div className="archive-navigation">
+          <div className="category-tabs" aria-label="Project categories">
+            {categories.map((item) => {
+              const count = projects.filter((project) => project.category === item.value).length;
+              return <button type="button" className={category === item.value ? 'is-active' : ''} onClick={() => selectCategory(item.value)} key={item.value}><strong>{item.label}</strong><span>{String(count).padStart(2, '0')}</span></button>;
+            })}
+          </div>
+          <div className="brand-filter-row">
+            <span>Brands in {categories.find((item) => item.value === category)?.label}</span>
+            {brands.length > 0 ? <div className="brand-filter" aria-label={`Filter ${category} projects by brand`}>
+              <button type="button" className={brand === null ? 'is-active' : ''} onClick={() => setBrand(null)}>All projects</button>
+              {brands.map((client) => <button type="button" className={brand === client ? 'is-active' : ''} onClick={() => setBrand(client)} key={client}>{client}</button>)}
+            </div> : <p>No brands in this category yet.</p>}
+          </div>
         </div>
-        <div className="view-toggle" aria-label="Choose view">
-          <button type="button" className={view === 'visual' ? 'is-active' : ''} onClick={() => setView('visual')}>Visual</button>
-          <button type="button" className={view === 'index' ? 'is-active' : ''} onClick={() => setView('index')}>Index</button>
-        </div>
-      </div>
 
-      {view === 'visual' ? (
-        <div className="archive-grid">
-          {visible.map((project) => (
-            <Link href={`/work/${project.slug}`} className="archive-card" key={project.slug} data-cursor="VIEW">
-              <ProjectVisual project={project} variant={project.featuredOrder % 2 ? 'cover' : 'system'} />
-              <div><span>0{project.featuredOrder}</span><h2>{project.client}</h2><p>{project.label} · {project.year}</p></div>
-            </Link>
-          ))}
+        <div className="archive-controls">
+          <span>{brand ? `${brand} / ${category}` : category}</span>
+          <div className="view-toggle" aria-label="Choose view">
+            <button type="button" className={view === 'visual' ? 'is-active' : ''} onClick={() => setView('visual')}>Visual</button>
+            <button type="button" className={view === 'index' ? 'is-active' : ''} onClick={() => setView('index')}>Index</button>
+          </div>
         </div>
-      ) : (
-        <div className="archive-index">
-          {visible.map((project) => (
-            <Link href={`/work/${project.slug}`} key={project.slug} data-cursor="VIEW"><span>0{project.featuredOrder}</span><strong>{project.client}</strong><span>{project.label}</span><span>{project.year}</span><ProjectVisual project={project} variant="detail" /></Link>
-          ))}
+
+        <div className="archive-introduction">
+          <span>{brand ? `Projects for ${brand}` : `${visible.length} selected projects`}</span>
+          <div><h2>{introduction.title}</h2><p>{introduction.text}</p></div>
         </div>
-      )}
+
+        {visible.length === 0 ? <div className="archive-empty"><span>Projects coming later</span><p>No supplied work is available in this category yet.</p></div> : view === 'visual' ? (
+          <div className="archive-grid">
+            {visible.map((project) => (
+              <Link href={`/work/${project.slug}`} className="archive-card" key={project.slug} data-cursor="VIEW">
+                <ProjectVisual project={project} variant="cover" />
+                <div className="archive-card__meta">
+                  <span>0{project.featuredOrder}</span>
+                  <div>
+                    <h2>{project.title}</h2>
+                    <h3>{project.client}</h3>
+                  </div>
+                  <p>{project.label}<br />{project.year}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <div className="archive-index">
+            {visible.map((project) => (
+              <Link href={`/work/${project.slug}`} key={project.slug} data-cursor="VIEW"><span>0{project.featuredOrder}</span><div><strong>{project.title}</strong><small>{project.client}</small></div><span>{project.label}</span><span>{project.year}</span><ProjectVisual project={project} variant="detail" /></Link>
+            ))}
+          </div>
+        )}
+      </div>
     </section>
   );
 }

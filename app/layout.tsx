@@ -9,12 +9,12 @@ const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin']
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: { default: 'Bivek Rai — Visual Designer', template: '%s — Bivek Rai' },
+  title: { default: 'Vivek Rai | Visual Designer', template: '%s | Vivek Rai' },
   description: 'Visual designer specialising in reports, presentations, brand communication and digital experiences.',
   keywords: ['visual designer', 'report designer', 'presentation designer', 'corporate communication', 'Mumbai'],
   alternates: { canonical: '/' },
-  openGraph: { title: 'Bivek Rai — Visual Designer', description: 'Designing clarity into complex communication.', type: 'website', url: siteUrl, siteName: 'Bivek Rai', images: [{ url: `${siteUrl}/og.png`, width: 1200, height: 630, alt: 'Bivek Rai — Designing clarity into complex communication.' }] },
-  twitter: { card: 'summary_large_image', title: 'Bivek Rai — Visual Designer', description: 'Designing clarity into complex communication.', images: [`${siteUrl}/og.png`] },
+  openGraph: { title: 'Vivek Rai | Visual Designer', description: 'Designing clarity into complex communication.', type: 'website', url: siteUrl, siteName: 'Vivek Rai', images: [{ url: `${siteUrl}/og.png`, width: 1200, height: 630, alt: 'Vivek Rai | Designing clarity into complex communication.' }] },
+  twitter: { card: 'summary_large_image', title: 'Vivek Rai | Visual Designer', description: 'Designing clarity into complex communication.', images: [`${siteUrl}/og.png`] },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

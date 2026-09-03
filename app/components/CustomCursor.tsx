@@ -14,16 +14,18 @@ export function CustomCursor() {
       const target = (event.target as HTMLElement).closest<HTMLElement>('[data-cursor]');
       element.textContent = target?.dataset.cursor ?? '';
       element.classList.toggle('is-active', Boolean(target));
+      element.classList.toggle('is-visible', Boolean(target));
     };
     const leave = () => element.classList.remove('is-visible');
-    const enter = () => element.classList.add('is-visible');
     window.addEventListener('pointermove', move);
+    window.addEventListener('scroll', leave, true);
+    window.addEventListener('click', leave);
     document.documentElement.addEventListener('mouseleave', leave);
-    document.documentElement.addEventListener('mouseenter', enter);
     return () => {
       window.removeEventListener('pointermove', move);
+      window.removeEventListener('scroll', leave, true);
+      window.removeEventListener('click', leave);
       document.documentElement.removeEventListener('mouseleave', leave);
-      document.documentElement.removeEventListener('mouseenter', enter);
     };
   }, []);
 

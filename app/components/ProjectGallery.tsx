@@ -26,7 +26,7 @@ export function ProjectGallery({ project }: { project: Project }) {
         {project.visuals.map((visual, index) => (
           <figure className={`gallery-item gallery-item--${visual.layout}`} key={visual.id}>
             <button type="button" onClick={() => setActive(index)} data-cursor="VIEW" aria-label={`Open ${visual.caption} fullscreen`}>
-              <ProjectVisual project={project} variant={visual.variant} />
+              <ProjectVisual project={project} variant={visual.variant} src={visual.src} alt={visual.alt} />
             </button>
             <figcaption><span>{String(index + 1).padStart(2, '0')}</span><span>{visual.caption}</span></figcaption>
           </figure>
@@ -36,7 +36,7 @@ export function ProjectGallery({ project }: { project: Project }) {
         <div className="lightbox" role="dialog" aria-modal="true" aria-label={`${project.title} visual viewer`}>
           <button className="lightbox-close" onClick={() => setActive(null)} autoFocus>Close</button>
           <button className="lightbox-prev" onClick={() => setActive((active - 1 + count) % count)} aria-label="Previous visual">←</button>
-          <div className="lightbox-visual"><ProjectVisual project={project} variant={project.visuals[active].variant} /></div>
+          <div className="lightbox-visual"><ProjectVisual project={project} variant={project.visuals[active].variant} src={project.visuals[active].src} alt={project.visuals[active].alt} eager /></div>
           <button className="lightbox-next" onClick={() => setActive((active + 1) % count)} aria-label="Next visual">→</button>
           <span className="lightbox-count">{String(active + 1).padStart(2, '0')} / {String(count).padStart(2, '0')}</span>
         </div>
