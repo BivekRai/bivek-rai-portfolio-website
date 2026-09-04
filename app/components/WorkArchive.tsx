@@ -22,7 +22,6 @@ const introductions: Record<ProjectCategory, { title: string; text: string }> = 
 export function WorkArchive({ projects }: { projects: Project[] }) {
   const [category, setCategory] = useState<ProjectCategory>('Reports');
   const [brand, setBrand] = useState<string | null>(null);
-  const [view, setView] = useState<'visual' | 'index'>('visual');
   const projectListRef = useRef<HTMLDivElement>(null);
   const categoryProjects = projects.filter((project) => project.category === category);
   const brands = Array.from(new Set(categoryProjects.map((project) => project.client)));
@@ -53,20 +52,12 @@ export function WorkArchive({ projects }: { projects: Project[] }) {
           </div>
         </div>
 
-        <div className="archive-controls">
-          <span>{brand ? `${brand} / ${category}` : category}</span>
-          <div className="view-toggle" aria-label="Choose view">
-            <button type="button" className={view === 'visual' ? 'is-active' : ''} onClick={() => setView('visual')}>Visual</button>
-            <button type="button" className={view === 'index' ? 'is-active' : ''} onClick={() => setView('index')}>Index</button>
-          </div>
-        </div>
-
         <div className="archive-introduction">
           <span>{brand ? `Projects for ${brand}` : `${visible.length} selected projects`}</span>
           <div><h2>{introduction.title}</h2><p>{introduction.text}</p></div>
         </div>
 
-        {visible.length === 0 ? <div className="archive-empty"><span>Projects coming later</span><p>No supplied work is available in this category yet.</p></div> : view === 'visual' ? (
+        {visible.length === 0 ? <div className="archive-empty"><span>Projects coming later</span><p>No supplied work is available in this category yet.</p></div> : (
           <div className="archive-grid">
             {visible.map((project) => (
               <Link href={`/work/${project.slug}`} className="archive-card" key={project.slug} data-cursor="VIEW">
@@ -80,12 +71,6 @@ export function WorkArchive({ projects }: { projects: Project[] }) {
                   <p>{project.label}<br />{project.year}</p>
                 </div>
               </Link>
-            ))}
-          </div>
-        ) : (
-          <div className="archive-index">
-            {visible.map((project) => (
-              <Link href={`/work/${project.slug}`} key={project.slug} data-cursor="VIEW"><span>0{project.featuredOrder}</span><div><strong>{project.title}</strong><small>{project.client}</small></div><span>{project.label}</span><span>{project.year}</span><ProjectVisual project={project} variant="detail" /></Link>
             ))}
           </div>
         )}
