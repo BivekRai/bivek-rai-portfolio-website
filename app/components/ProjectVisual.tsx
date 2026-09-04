@@ -1,7 +1,4 @@
-import Image from 'next/image';
 import type { Project } from '../data/projects';
-
-const neutralBlur = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSIyNSI+PHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjI1IiBmaWxsPSIjZTVlMWRhIi8+PC9zdmc+';
 
 type Props = {
   project: Project;
@@ -10,10 +7,9 @@ type Props = {
   src?: string;
   alt?: string;
   eager?: boolean;
-  sizes?: string;
 };
 
-export function ProjectVisual({ project, variant = 'cover', className = '', src, alt, eager = false, sizes = '(max-width: 768px) 100vw, 90vw' }: Props) {
+export function ProjectVisual({ project, variant = 'cover', className = '', src, alt, eager = false }: Props) {
   const style = {
     '--visual-bg': project.theme.background,
     '--visual-fg': project.theme.foreground,
@@ -26,18 +22,11 @@ export function ProjectVisual({ project, variant = 'cover', className = '', src,
   if (asset) {
     return (
       <div className={`visual real-visual real-visual--${variant} ${className}`} style={style}>
-        <span className="real-visual__media">
-          <Image
-            src={asset}
-            alt={alt ?? `${project.client}: ${project.title}`}
-            fill
-            sizes={sizes}
-            loading={eager ? 'eager' : 'lazy'}
-            fetchPriority={eager ? 'high' : 'auto'}
-            placeholder="blur"
-            blurDataURL={neutralBlur}
-          />
-        </span>
+        <img
+          src={asset}
+          alt={alt ?? `${project.client}: ${project.title}`}
+          loading={eager ? 'eager' : 'lazy'}
+        />
       </div>
     );
   }

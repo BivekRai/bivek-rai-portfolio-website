@@ -59,9 +59,9 @@ export function WorkArchive({ projects }: { projects: Project[] }) {
 
         {visible.length === 0 ? <div className="archive-empty"><span>Projects coming later</span><p>No supplied work is available in this category yet.</p></div> : (
           <div className="archive-grid">
-            {visible.map((project, index) => (
+            {visible.map((project) => (
               <Link href={`/work/${project.slug}`} className="archive-card" key={project.slug} data-cursor="VIEW">
-                <ProjectVisual project={project} variant="cover" eager={index === 0} sizes="(max-width: 768px) 100vw, 50vw" />
+                <ProjectVisual project={project} variant="cover" />
                 <div className="archive-card__meta">
                   <span>0{project.featuredOrder}</span>
                   <div>

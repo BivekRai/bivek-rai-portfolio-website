@@ -64,11 +64,11 @@ export default function Home() {
               <Link href={`/work/${project.slug}`} className="home-project__link" data-cursor="VIEW">
                 {companionVisual ? (
                   <div className="home-project__visuals">
-                    <ProjectVisual project={project} variant="cover" sizes="(max-width: 768px) 100vw, 32vw" />
-                    <ProjectVisual project={project} variant={companionVisual.variant} src={companionVisual.src} alt={companionVisual.alt} sizes="(max-width: 768px) 100vw, 62vw" />
+                    <ProjectVisual project={project} variant="cover" />
+                    <ProjectVisual project={project} variant={companionVisual.variant} src={companionVisual.src} alt={companionVisual.alt} />
                   </div>
                 ) : (
-                  <ProjectVisual project={project} variant={index % 2 ? 'system' : 'cover'} sizes="100vw" />
+                  <ProjectVisual project={project} variant={index % 2 ? 'system' : 'cover'} />
                 )}
                 <div className="project-heading"><div><p>{project.client}</p><h2>{project.title}</h2></div><span aria-hidden="true">↗</span></div>
               </Link>

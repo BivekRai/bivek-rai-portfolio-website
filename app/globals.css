@@ -88,22 +88,11 @@ button,a { -webkit-tap-highlight-color:transparent; }
 .visual--detail .visual-panel { right:5%; bottom:8%; width:38%; transform:rotate(-2deg); }
 .real-visual { display:flex; align-items:center; justify-content:center; padding:clamp(20px,4vw,64px); background:color-mix(in srgb,var(--visual-bg) 68%,#f4eee8); }
 .real-visual::before { position:absolute; inset:0; background:linear-gradient(135deg,rgb(255 255 255 / 38%),transparent 55%); content:''; }
-.real-visual .real-visual__media { position:relative; z-index:1; display:block; width:100%; height:100%; transform:none; }
-.real-visual img { display:block; object-fit:contain; box-shadow:0 22px 55px rgb(44 18 12 / 18%); transition:transform 450ms cubic-bezier(.2,.75,.2,1),opacity 280ms ease; }
+.real-visual img { position:relative; z-index:1; display:block; width:auto; max-width:100%; height:100%; max-height:100%; object-fit:contain; box-shadow:0 22px 55px rgb(44 18 12 / 18%); transition:transform 450ms cubic-bezier(.2,.75,.2,1); }
 .real-visual--spread,.real-visual--system,.real-visual--detail { padding:0; background:#eeeae5; }
 .real-visual--spread::after { display:none; }
 .real-visual--spread img,.real-visual--system img,.real-visual--detail img { width:100%; height:100%; box-shadow:none; }
 .home-project__link:hover .real-visual img,.archive-card:hover .real-visual img,.gallery-item button:hover .real-visual img { transform:scale(1.012); }
-
-.page-transition { min-height:100svh; animation:page-enter 520ms cubic-bezier(.22,.75,.18,1) both; }
-@keyframes page-enter {
-  from { opacity:0; transform:translateY(14px); }
-  to { opacity:1; transform:translateY(0); }
-}
-
-@media (prefers-reduced-motion:reduce) {
-  .page-transition { animation:none; }
-}
 
 .capabilities { background:#111; color:#f4f2ec; }
 .capability-list>div { display:grid; grid-template-columns:70px 1fr 1fr; align-items:center; padding:30px 0; border-bottom:1px solid rgb(244 242 236 / 24%); }
