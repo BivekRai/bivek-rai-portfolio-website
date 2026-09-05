@@ -35,6 +35,15 @@ const projectSurfaces: Record<string, { background: string; foreground: string }
 
 const clientNames = Array.from(new Set(projects.map((project) => project.client))).slice(0, 6);
 
+const featuredProjects = [
+  'coromandel-consolidate-to-accelerate',
+  'hdfc-ergo-integrated-report',
+  'ghial-redefining-aviation',
+  'adf-foods-navigating-global-shifts',
+  'india-rf-purposeful-investing',
+  'sisasss-legacy-of-change',
+].map((slug) => projects.find((project) => project.slug === slug)!);
+
 export default function Home() {
   return (
     <main id="top">
@@ -52,7 +61,7 @@ export default function Home() {
         </div>
       </section>
       <section className="selected-work" id="selected-work" aria-label="Selected work">
-        {projects.map((project, index) => {
+        {featuredProjects.map((project, index) => {
           const companionVisual = project.heroOrientation === 'portrait'
             ? project.visuals.find((visual) => visual.src && visual.src !== project.heroImage)
             : undefined;
@@ -60,7 +69,7 @@ export default function Home() {
 
           return (
             <article className={`home-project${companionVisual ? ' home-project--portrait-pair' : ''}`} key={project.slug} style={{ '--section-bg': surface.background, '--section-fg': surface.foreground } as React.CSSProperties}>
-              <div className="project-kicker"><span>0{project.featuredOrder} / {project.label}</span><span>{project.isDemo === false ? 'Selected work' : 'Demonstration project'}</span><span>{project.year}</span></div>
+              <div className="project-kicker"><span>{String(index + 1).padStart(2, '0')} / {project.label}</span><span>{project.isDemo === false ? 'Selected work' : 'Demonstration project'}</span><span>{project.year}</span></div>
               <Link href={`/work/${project.slug}`} className="home-project__link" data-cursor="VIEW">
                 {companionVisual ? (
                   <div className="home-project__visuals">
@@ -76,6 +85,7 @@ export default function Home() {
           );
         })}
       </section>
+      <div className="selected-work-more"><Link href="/work">View all work <span aria-hidden="true">↗</span></Link></div>
       <section className="capabilities section-pad"><div className="section-label"><span>Capabilities</span><span>Visual communication across print and digital</span></div><div className="capability-list">{capabilities.map((item) => <div key={item.no}><span>{item.no}</span><h2>{item.title}</h2><p>{item.list}</p></div>)}</div></section>
       <section className="clients section-pad"><div className="section-label"><span>Selected clients / projects</span><span>Supplied portfolio work</span></div><div className="client-marquee" aria-label="Selected clients and projects">{clientNames.map((client) => <div key={client}><ClientLogo client={client} /></div>)}</div></section>
       <section className="about-preview section-pad"><span className="section-count">About / 01</span><div><h2>A visual designer focused on making complex information easier to understand.</h2><p>I bring structure, hierarchy and a strong editorial eye to reports, presentations, brand communication and digital work, helping important ideas feel clear, credible and worth attention.</p><Link href="/about">More about me →</Link></div></section>
