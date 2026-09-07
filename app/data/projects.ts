@@ -422,6 +422,29 @@ export const projects: Project[] = [
       { id: 'epl-21', layout: 'pair-right', variant: 'spread', src: '/projects/epl-talent-driven-journey/21-csr.webp', caption: 'Corporate social responsibility', alt: 'EPL CSR mosaic covering skills, plastic waste, community programmes and sustainable development goals' },
     ],
   },
+  {
+    slug: 'jusbytes-snack-branding', client: 'JusBytes', title: 'A Snack for Any Craving', year: '2024', category: 'Brand', label: 'Packaging & Brand Brochure', featuredOrder: 18,
+    intro: 'JusBytes brings its chips and farsan ranges together through a playful, colourful brand language. Bold flavour colours, expressive typography and product-led compositions give each pack its own personality while keeping the range recognisable as one family. The 2024 brochure extends this visual language across product introductions, range overviews and flavour pages. Ingredient imagery communicates taste at a glance, while consistent layouts organise pack sizes and product information. Bright yellow section openers connect the potato wafer and traditional snack ranges, creating a cohesive presentation of the brand across packaging and print.',
+    heroImage: '/projects/jusbytes-snack-branding/01-cover.webp',
+    heroOrientation: 'portrait',
+    isDemo: false,
+    theme: { background: '#ffe20a', foreground: '#07336a', accent: '#ee5224', secondary: '#ffffff' },
+    seo: { title: 'JusBytes Packaging & Brand Brochure', description: 'JusBytes snack packaging and 2024 brand brochure, featuring colourful chips and farsan ranges across 12 selected pages.' },
+    visuals: [
+      { id: 'jusbytes-01', layout: 'pair-left', variant: 'cover', src: '/projects/jusbytes-snack-branding/01-cover.webp', caption: 'Brand brochure cover', alt: 'JusBytes Chips and Farsans 2024 cover with orange and yellow snack packs' },
+      { id: 'jusbytes-02', layout: 'pair-right', variant: 'detail', src: '/projects/jusbytes-snack-branding/02-brand-story.webp', caption: 'Brand story and product family', alt: 'JusBytes logo, complete snack range and brand introduction on a yellow panel' },
+      { id: 'jusbytes-03', layout: 'pair-left', variant: 'detail', src: '/projects/jusbytes-snack-branding/03-potato-wafers.webp', caption: 'Potato wafer range opener', alt: 'JusBytes potato wafer range with flying chips and a yellow pack' },
+      { id: 'jusbytes-04', layout: 'pair-right', variant: 'detail', src: '/projects/jusbytes-snack-branding/04-tomato-cheese.webp', caption: 'Tomato and cheese flavours', alt: 'Red Tamaataa and orange Chaskaa JusBytes packs with tomato and cheese ingredient imagery' },
+      { id: 'jusbytes-05', layout: 'pair-left', variant: 'detail', src: '/projects/jusbytes-snack-branding/05-salted-peri-peri.webp', caption: 'Salted and peri-peri flavours', alt: 'White salted and orange peri-peri JusBytes potato wafer packs with flavour illustrations' },
+      { id: 'jusbytes-06', layout: 'pair-right', variant: 'detail', src: '/projects/jusbytes-snack-branding/06-onion-herbs.webp', caption: 'Onion cream and herbs chilli flavours', alt: 'Green Pyaazaa and blue Chataakaa JusBytes packs with onion, herbs and chilli imagery' },
+      { id: 'jusbytes-07', layout: 'pair-left', variant: 'detail', src: '/projects/jusbytes-snack-branding/07-farsans.webp', caption: 'Farsan range opener', alt: 'JusBytes farsan packs above a Traditionally Indian snack assortment on yellow' },
+      { id: 'jusbytes-08', layout: 'pair-right', variant: 'detail', src: '/projects/jusbytes-snack-branding/08-snack-mixes.webp', caption: 'Snack mix packaging family', alt: 'JusBytes Sev Boondi, Makai, Maharaja and Golden Mix packs in green, red, purple and orange' },
+      { id: 'jusbytes-09', layout: 'pair-left', variant: 'detail', src: '/projects/jusbytes-snack-branding/09-farsan-dal.webp', caption: 'Farsan and dal variants', alt: 'JusBytes Farsan Mix, Garlic Mix, Chana Dal and Moong Dal packaging' },
+      { id: 'jusbytes-10', layout: 'pair-right', variant: 'detail', src: '/projects/jusbytes-snack-branding/10-traditional-snacks.webp', caption: 'Traditional snack variants', alt: 'JusBytes Masala Sing Chana, Khatta Meetha Mix, Nimbu Sing Bhujia and Teekha Tadka Mix packaging' },
+      { id: 'jusbytes-11', layout: 'pair-left', variant: 'detail', src: '/projects/jusbytes-snack-branding/11-made-in-india.webp', caption: 'Made with pride in India', alt: 'JusBytes Made with pride in India page with the product family and company contact details' },
+      { id: 'jusbytes-12', layout: 'pair-right', variant: 'detail', src: '/projects/jusbytes-snack-branding/12-closing.webp', caption: 'Closing brand composition', alt: 'JusBytes thank-you page with a spiral arrangement of colourful snack packs' },
+    ],
+  },
 ];
 
 export const projectBySlug = (slug: string) => projects.find((project) => project.slug === slug);
