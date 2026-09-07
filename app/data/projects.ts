@@ -1,4 +1,4 @@
-export type ProjectCategory = 'Reports' | 'Presentations' | 'Brand' | 'Digital';
+export type ProjectCategory = 'Reports' | 'Presentations' | 'Brand' | 'Packaging' | 'Digital';
 
 export type ProjectVisualBlock = {
   id: string;
@@ -443,6 +443,26 @@ export const projects: Project[] = [
       { id: 'jusbytes-10', layout: 'pair-right', variant: 'detail', src: '/projects/jusbytes-snack-branding/10-traditional-snacks.webp', caption: 'Brochure page 10', alt: 'JusBytes Masala Sing Chana, Khatta Meetha Mix, Nimbu Sing Bhujia and Teekha Tadka Mix packaging' },
       { id: 'jusbytes-11', layout: 'pair-left', variant: 'detail', src: '/projects/jusbytes-snack-branding/11-made-in-india.webp', caption: 'Brochure page 11', alt: 'JusBytes Made with pride in India page with the product family and company contact details' },
       { id: 'jusbytes-12', layout: 'pair-right', variant: 'detail', src: '/projects/jusbytes-snack-branding/12-closing.webp', caption: 'Brochure page 12', alt: 'JusBytes thank-you page with a spiral arrangement of colourful snack packs' },
+    ],
+  },
+  {
+    slug: 'jusbytes-snack-packaging', client: 'JusBytes', title: 'Traditional Snacks Packaging', year: '2024', category: 'Packaging', label: 'Packaging Design', featuredOrder: 19,
+    intro: 'Packaging design for the JusBytes traditional snack range, covering Garlic Mix, Khatta Meetha Mix, Nimbu Sing Bhujia, Teekha Tadka Mix and Farsan Mix. A shared layout combines flavour-specific colours, patterned backgrounds, bold product names and prominent food imagery. The flat artworks organise the front, back and information panels, while front-and-back pouch mockups show how the designs translate onto the packs. This project presents the packaging artwork separately from the JusBytes product brochure.',
+    heroImage: '/projects/jusbytes-snack-packaging/01-garlic-mix-mockup.webp',
+    heroOrientation: 'landscape',
+    isDemo: false,
+    theme: { background: '#a35b30', foreground: '#102e49', accent: '#d21c40', secondary: '#ffffff' },
+    seo: { title: 'JusBytes Traditional Snacks Packaging Design', description: 'JusBytes snack packaging design with front-and-back pouch mockups and flat artworks for five traditional snack flavours.' },
+    visuals: [
+      { id: 'jusbytes-pack-01', layout: 'full', variant: 'spread', src: '/projects/jusbytes-snack-packaging/01-garlic-mix-mockup.webp', caption: 'Garlic Mix: front and back mockup', alt: 'Brown JusBytes Garlic Mix pouch mockup showing the front and back packaging' },
+      { id: 'jusbytes-pack-02', layout: 'full', variant: 'detail', src: '/projects/jusbytes-snack-packaging/02-garlic-mix-artwork.webp', caption: 'Garlic Mix: flat artwork', alt: 'JusBytes Garlic Mix flat packaging artwork with brown patterned panels, product imagery and nutritional information' },
+      { id: 'jusbytes-pack-03', layout: 'full', variant: 'spread', src: '/projects/jusbytes-snack-packaging/03-khatta-meetha-mockup.webp', caption: 'Khatta Meetha Mix: front and back mockup', alt: 'Teal JusBytes Khatta Meetha Mix pouch mockup showing the front and back packaging' },
+      { id: 'jusbytes-pack-04', layout: 'full', variant: 'detail', src: '/projects/jusbytes-snack-packaging/04-khatta-meetha-artwork.webp', caption: 'Khatta Meetha Mix: flat artwork', alt: 'JusBytes Khatta Meetha Mix flat packaging artwork with teal patterned panels and sweet and spicy snack imagery' },
+      { id: 'jusbytes-pack-05', layout: 'full', variant: 'spread', src: '/projects/jusbytes-snack-packaging/05-nimbu-sing-mockup.webp', caption: 'Nimbu Sing Bhujia: front and back mockup', alt: 'Yellow JusBytes Nimbu Sing Bhujia pouch mockup showing the front and back packaging' },
+      { id: 'jusbytes-pack-06', layout: 'full', variant: 'detail', src: '/projects/jusbytes-snack-packaging/06-nimbu-sing-artwork.webp', caption: 'Nimbu Sing Bhujia: flat artwork', alt: 'JusBytes Nimbu Sing Bhujia flat packaging artwork with yellow patterned panels and peanut imagery' },
+      { id: 'jusbytes-pack-07', layout: 'full', variant: 'spread', src: '/projects/jusbytes-snack-packaging/07-teekha-tadka-mockup.webp', caption: 'Teekha Tadka Mix: front and back mockup', alt: 'Red JusBytes Teekha Tadka Mix pouch mockup showing the front and back packaging' },
+      { id: 'jusbytes-pack-08', layout: 'full', variant: 'detail', src: '/projects/jusbytes-snack-packaging/08-teekha-tadka-artwork.webp', caption: 'Teekha Tadka Mix: flat artwork', alt: 'JusBytes Teekha Tadka Mix flat packaging artwork with red patterned panels and spicy snack imagery' },
+      { id: 'jusbytes-pack-09', layout: 'full', variant: 'detail', src: '/projects/jusbytes-snack-packaging/09-farsan-mix-artwork.webp', caption: 'Farsan Mix: flat artwork', alt: 'JusBytes Farsan Mix flat packaging artwork with blue patterned panels, snack imagery and product information' },
     ],
   },
 ];

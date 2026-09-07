@@ -9,6 +9,7 @@ const categories: Array<{ label: string; value: ProjectCategory }> = [
   { label: 'Reports', value: 'Reports' },
   { label: 'Presentations', value: 'Presentations' },
   { label: 'Branding', value: 'Brand' },
+  { label: 'Packaging', value: 'Packaging' },
   { label: 'Digital', value: 'Digital' },
 ];
 
@@ -16,6 +17,7 @@ const introductions: Record<ProjectCategory, { title: string; text: string }> = 
   Reports: { title: 'Reports that make complex information clear.', text: 'I design annual reports, integrated reports, quarterly reports, sustainability and ESG reports, impact reports and other corporate publications, building strong narratives around detailed business information.' },
   Presentations: { title: 'Presentations built to hold attention.', text: 'From corporate and investor presentations to pitch decks and leadership communication, I turn complex ideas into focused visual stories with clear structure, confident pacing and memorable information design.' },
   Brand: { title: 'Brand communication with a consistent voice.', text: 'My branding work includes visual identities, brochures, campaigns and marketing collaterals designed to keep every message recognisable, useful and connected across formats.' },
+  Packaging: { title: 'Packaging with a clear identity.', text: 'Product packaging that brings together brand recognition, flavour differentiation and clear information across a consistent design system.' },
   Digital: { title: 'Digital experiences made easy to understand.', text: 'I apply the same clarity and hierarchy to UI/UX and web design, creating responsive digital experiences that feel modern, purposeful and simple to navigate.' },
 };
 
